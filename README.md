@@ -30,7 +30,7 @@ in docs/ explains every decision in detail.
 
 ## Repository Structure
 
-```
+```text
 ScentDB/
 ├── postgresql/
 │   ├── schema.sql                Core relational schema (7 tables, BCNF)
