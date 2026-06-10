@@ -29,12 +29,14 @@ in docs/ explains every decision in detail.
 ---
 
 ## Repository Structure
+
+```
 ScentDB/
 ├── postgresql/
 │   ├── schema.sql                Core relational schema (7 tables, BCNF)
 │   ├── schema_advanced.sql       Notes, wishlists, audit log, triggers, views
 │   ├── schema_indexes.sql        14 indexes with rationale
-│   ├── schema_normalization.sql  1NF → BCNF walkthrough with violation examples
+│   ├── schema_normalization.sql  1NF through BCNF with violation examples
 │   ├── seed.sql                  Seed data across all tables
 │   ├── queries.sql               Core analytical queries
 │   ├── queries_advanced.sql      Window functions, stored procedure, views
@@ -70,6 +72,8 @@ ScentDB/
 │   ├── architecture.md           Full system design and decision rationale
 │   └── er_diagram.md             Entity relationship map across all three systems
 └── README.md
+```
+
 ---
 
 ## PostgreSQL Layer
@@ -232,25 +236,22 @@ analytics layer dependencies.
 ## Getting Started
 
 **PostgreSQL**
+
 ```sql
--- Create the database
 CREATE DATABASE scentdb;
 
--- Run in order
 \i postgresql/schema.sql
 \i postgresql/schema_advanced.sql
 \i postgresql/seed.sql
 \i postgresql/schema_indexes.sql
 
--- Then run any query or analytics file
 \i postgresql/queries.sql
 \i analytics/rfm_analysis.sql
 ```
 
 **MongoDB**
+
 ```javascript
-// Run in MongoDB Shell or Compass
-// Load each file in order
 load("mongodb/documents.js")
 load("mongodb/market_trends.js")
 load("mongodb/queries.js")
@@ -258,13 +259,14 @@ load("mongodb/schema_validation.js")
 ```
 
 **Neo4j**
-```cypher
-// Run in Neo4j Browser in order
-// 1. setup.cypher
-// 2. data_import.cypher
-// 3. queries.cypher
-// 4. advanced_queries.cypher
-// 5. graph_algorithms.cypher
+
+```
+Run in Neo4j Browser in order:
+1. setup.cypher
+2. data_import.cypher
+3. queries.cypher
+4. advanced_queries.cypher
+5. graph_algorithms.cypher
 ```
 
 ---
@@ -272,7 +274,7 @@ load("mongodb/schema_validation.js")
 ## Power BI Connection
 
 Connect Power BI Desktop to PostgreSQL (localhost, scentdb)
-and select only the `vw_` prefixed views. Each view is
+and select only the vw_ prefixed views. Each view is
 pre-joined and pre-calculated — no transformation needed
 in Power Query. The reporting_views.sql file includes a
 full connection guide mapping each view to its report page.
